@@ -1,8 +1,7 @@
 getComputerChoice = () => ["rock", "paper", "scissors"][Math.floor(Math.random()*3)];
 
 getPlayerChoice = () => {
-    let choice = prompt("Choose one: rock, paper, scissors");
-    choice = choice.toLowerCase().toLowerCase();
+    let choice = prompt("Choose one: rock, paper, scissors").toLowerCase();
     return choice === "rock" || choice === "paper" || choice === "scissors" ? choice : getPlayerChoice()
 }
 
