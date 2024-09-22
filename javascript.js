@@ -22,6 +22,8 @@ roundsSelection.forEach((item) =>{
     })
 });
 
+//-----------------GAME-----------------
+
 //play button
 //switchig overlays
 
@@ -60,17 +62,35 @@ let computerScore = 0;
 hands.forEach((hand)=>{
     hand.addEventListener('click', ()=>{
         playerChoice = hand.firstChild.alt
-        //hand.firstChild.setAttribute('style', 'border:1px; border-style:solid; border-color: green')
 
         let outcome = playRound(playerChoice, getComputerChoice());
         console.log(outcome)
-        if (outcome === 'win') humanScore++
-        else if (outcome === 'loss') computerScore++
+        if (outcome === 'win'){
+            humanScore++
+            hand.firstChild.setAttribute('style', 'border:3px; border-style:solid; border-color: green; border-radius: 8px')
+        }
+        else if (outcome === 'loss'){
+            computerScore++
+            hand.firstChild.setAttribute('style', 'border:3px; border-style:solid; border-color: red; border-radius: 8px')
+        }
+        else hand.firstChild.setAttribute('style', 'border:3px; border-style:solid; border-color: yellow; border-radius: 8px') 
 
+        //waiting 0.5 sec to turn back border to invisible
+        setTimeout(function() {
+            hand.firstChild.setAttribute('style', 'border:3px; border-style:solid; border-color: rgba(255, 255, 255, 0); border-radius: 8px;')
+        }, 500); // 500 milliseconds = .5 second
+
+        //displaying score
         scoreDisplay.textContent = `${humanScore}:${computerScore}`;
         lastOutcome.textContent = outcome + '!'
 
+        //if game ends
         if (humanScore >= rounds || computerScore >= rounds){
+            lastOutcome.textContent = '';
+            playedRounds = 0;
+            humanScore = 0;
+            computerScore = 0;
+            scoreDisplay.textContent = '0:0';
             menuContainer.setAttribute('style', 'display:flex;');
             gameContainer.setAttribute('style', 'display:none;')
         }
