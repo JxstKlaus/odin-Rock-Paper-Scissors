@@ -70,6 +70,7 @@ main{
     background-color: rgba(92, 92, 104, .7);
     border-radius: 16px;
     padding: 16px 24px;
+    cursor: pointer;
 }
 
 /*dropdown menu*/
@@ -102,5 +103,78 @@ ul{
     li:hover{
         padding-left: 16px;
         background-color: rgba(67, 67, 70, 0.7);
+    }
+}
+
+/*game overlay*/
+
+.game-container{
+    display: none;
+    margin-top: 8rem;
+    justify-content: center;
+    gap: 7rem;
+    width: 100%;
+
+    .center{
+        align-self: center;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        
+        .vs{
+            font-size: 5rem;
+        }
+        .score{
+            font-size: 1.3rem;
+        }
+    }
+}
+.player, .machine{
+    width: 30%;
+    height: 23rem;
+    background-color: rgba(22, 22, 22, .9);
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    p{
+        font-size: 2.3rem;
+        padding: 8px;
+    }
+
+    .hands{
+        display: flex;
+        justify-content: space-around;
+        
+        .hand{
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+    
+            img{
+                width: 80% ;
+                border: 3px solid rgba(255, 255, 255, 0);
+                cursor: pointer;
+            }
+
+            img:hover {
+                border-radius: 8px;
+                border: 3px solid rgba(255, 255, 255, 1);
+            }
+        }
+    }
+
+    .dialoge{
+        height: 25%;
+        h3{
+            display: none;
+        }
+        p{
+            font-size: .8rem;
+            display: none;
+        }
     }
 }
