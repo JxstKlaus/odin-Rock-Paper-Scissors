@@ -51,11 +51,13 @@ playRound = (h,c) => {
 }
 
 
-//playig the game
+//game variables 
 const hands = document.querySelectorAll('.player_');
 const scoreDisplay = document.querySelector('.score-display');
 const lastOutcome = document.querySelector('.last-outcome');
+const endOfGame = document.querySelector('.end-of-game')
 
+//border on hover
 hands.forEach((hand) => {
     hand.addEventListener('mouseenter', () => {
         hand.setAttribute('style', 'border:5px; border-style:solid; rgba(255, 255, 255, 1); border-radius: 8px')
@@ -68,45 +70,78 @@ hands.forEach((hand) => {
     })
 })
 
-let playedRounds = 0;
+//game 
+let isEnded = false;
 let humanScore = 0;
 let computerScore = 0;
 
 hands.forEach((hand)=>{
-    hand.addEventListener('click', ()=>{
-        //getting the round output 
-        playerChoice = hand.firstChild.alt
-        let outcome = playRound(playerChoice, getComputerChoice());
-        console.log(outcome)
+    hand.addEventListener('click', function eventHandler(){
+        if (isEnded==false){
+            //getting the round output 
+            playerChoice = hand.firstChild.alt
+            let outcome = playRound(playerChoice, getComputerChoice());
+            console.log(outcome)
 
-        if (outcome === 'win'){
-            humanScore++
-            hand.setAttribute('style', 'border:5px; border-style:solid; border-color: green; border-radius: 8px')
+            if (outcome === 'win'){
+                humanScore++
+                hand.setAttribute('style', 'border:5px; border-style:solid; border-color: green; border-radius: 8px')
+            }
+            else if (outcome === 'loss'){
+                computerScore++
+                hand.setAttribute('style', 'border:5px; border-style:solid; border-color: red; border-radius: 8px')
+            }
+            else hand.setAttribute('style', 'border:5px; border-style:solid; border-color: yellow; border-radius: 8px') 
+
+            //waiting 0.5 sec to turn back border to invisible
+            setTimeout(function() {
+                hand.setAttribute('style', 'border:5px; border-style:solid; border-color: rgba(255, 255, 255, 0); border-radius: 8px;')
+            }, 700);
+
+            //displaying score
+            scoreDisplay.textContent = `${humanScore}:${computerScore}`;
+            lastOutcome.textContent = outcome + '!'
+
         }
-        else if (outcome === 'loss'){
-            computerScore++
-            hand.setAttribute('style', 'border:5px; border-style:solid; border-color: red; border-radius: 8px')
-        }
-        else hand.setAttribute('style', 'border:5px; border-style:solid; border-color: yellow; border-radius: 8px') 
-
-        //waiting 0.5 sec to turn back border to invisible
-        setTimeout(function() {
-            hand.setAttribute('style', 'border:5px; border-style:solid; border-color: rgba(255, 255, 255, 0); border-radius: 8px;')
-        }, 700);
-
-        //displaying score
-        scoreDisplay.textContent = `${humanScore}:${computerScore}`;
-        lastOutcome.textContent = outcome + '!'
-
+        
         //if game ends
         if (humanScore >= rounds || computerScore >= rounds){
+            const h2 = endOfGame.querySelector('h2')
+            const p = endOfGame.querySelector('p')
+            if (humanScore > computerScore){
+                h2.textContent = "Congratulations! You won"
+                p.textContent = "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Suscipit reprehenderit error eos!"
+            }
+            else{
+                h2.textContent = "The machine has overcome you..."
+                p.textContent = "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Suscipit reprehenderit error eos!"
+            }
+            endOfGame.setAttribute('style', 'display:flex;');
             lastOutcome.textContent = '';
-            playedRounds = 0;
             humanScore = 0;
             computerScore = 0;
-            scoreDisplay.textContent = '0:0';
-            menuContainer.setAttribute('style', 'display:flex;');
-            gameContainer.setAttribute('style', 'display:none;')
+            isEnded=true
         }
     })
+})
+
+
+//-----------------NAVIGATION AFTER THE MATCH-----------------
+
+const playAgain = document.querySelector('.play-again');
+const backToMain = document.querySelector('.back-to-main');
+
+playAgain.addEventListener('click', ()=>{
+    endOfGame.setAttribute('style', 'display:none;')
+    scoreDisplay.textContent = '0:0';
+    isEnded = false
+})
+
+backToMain.addEventListener('click', ()=>{
+    endOfGame.setAttribute('style', 'display:none;')
+    menuContainer.setAttribute('style', 'display:flex;');
+    gameContainer.setAttribute('style', 'display:none;')
+    body.setAttribute('style','backdrop-filter: 0');
+    scoreDisplay.textContent = '0:0';
+    isEnded = false
 })
