@@ -50,12 +50,12 @@ playRound = (h,c) => {
 
 //playig the game
 const hands = document.querySelectorAll('.hands .player_');
+const scoreDisplay = document.querySelector('.score-display');
+const lastOutcome = document.querySelector('.last-outcome');
+
 let playedRounds = 0;
 let humanScore = 0;
 let computerScore = 0;
-
-const scoreDisplay = document.querySelector('.score-display');
-
 
 hands.forEach((hand)=>{
     hand.addEventListener('click', ()=>{
@@ -66,7 +66,9 @@ hands.forEach((hand)=>{
         console.log(outcome)
         if (outcome === 'win') humanScore++
         else if (outcome === 'loss') computerScore++
+
         scoreDisplay.textContent = `${humanScore}:${computerScore}`;
+        lastOutcome.textContent = outcome + '!'
 
         if (humanScore >= rounds || computerScore >= rounds){
             menuContainer.setAttribute('style', 'display:flex;');
