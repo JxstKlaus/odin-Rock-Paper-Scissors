@@ -33,4 +33,27 @@ playGame = (rounds) => {
 }
 
 
-playGame(5);
+//playGame(5);
+
+
+//mode dropdown menu
+
+const modeButton = document.querySelector('.mode');
+const dropdownContent = document.querySelector('.dropdown-content')
+const mode = document.querySelector('.mode')
+const rounds = document.querySelectorAll('.rounds')
+
+
+modeButton.addEventListener('click', ()=>{
+    const dropdownToggle = dropdownContent.getAttribute("style","display")
+
+    if (dropdownToggle == 'display:block;') dropdownContent.setAttribute("style","display:none;")
+    else dropdownContent.setAttribute("style","display:block;")
+});
+
+rounds.forEach((item) =>{
+    item.addEventListener('click', () =>{
+        mode.textContent = 'Mode: ' + item.textContent
+        dropdownContent.setAttribute("style","display:none;")
+    })
+});
