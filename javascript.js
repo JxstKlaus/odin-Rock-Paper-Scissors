@@ -30,12 +30,13 @@ roundsSelection.forEach((item) =>{
 const playButton = document.querySelector('.play-button')
 const menuContainer = document.querySelector('.menu-container')
 const gameContainer = document.querySelector('.game-container')
+const body = document.querySelector('body')
 
 const rounds = parseInt(mode.textContent.at(-1))
 playButton.addEventListener('click', ()=>{
     menuContainer.setAttribute('style', 'display:none;');
-    gameContainer.setAttribute('style', 'display:flex;')
-    
+    gameContainer.setAttribute('style', 'display:flex;');
+    body.setAttribute('style','backdrop-filter: blur(4px)');
 })
 
 //selecting computer weapon
@@ -51,9 +52,21 @@ playRound = (h,c) => {
 
 
 //playig the game
-const hands = document.querySelectorAll('.hands .player_');
+const hands = document.querySelectorAll('.player_');
 const scoreDisplay = document.querySelector('.score-display');
 const lastOutcome = document.querySelector('.last-outcome');
+
+hands.forEach((hand) => {
+    hand.addEventListener('mouseenter', () => {
+        hand.setAttribute('style', 'border:5px; border-style:solid; rgba(255, 255, 255, 1); border-radius: 8px')
+    })
+})
+
+hands.forEach((hand) => {
+    hand.addEventListener('mouseleave', () => {
+        hand.setAttribute('style', 'border: trasparent')
+    })
+})
 
 let playedRounds = 0;
 let humanScore = 0;
@@ -61,24 +74,25 @@ let computerScore = 0;
 
 hands.forEach((hand)=>{
     hand.addEventListener('click', ()=>{
+        //getting the round output 
         playerChoice = hand.firstChild.alt
-
         let outcome = playRound(playerChoice, getComputerChoice());
         console.log(outcome)
+
         if (outcome === 'win'){
             humanScore++
-            hand.firstChild.setAttribute('style', 'border:3px; border-style:solid; border-color: green; border-radius: 8px')
+            hand.setAttribute('style', 'border:5px; border-style:solid; border-color: green; border-radius: 8px')
         }
         else if (outcome === 'loss'){
             computerScore++
-            hand.firstChild.setAttribute('style', 'border:3px; border-style:solid; border-color: red; border-radius: 8px')
+            hand.setAttribute('style', 'border:5px; border-style:solid; border-color: red; border-radius: 8px')
         }
-        else hand.firstChild.setAttribute('style', 'border:3px; border-style:solid; border-color: yellow; border-radius: 8px') 
+        else hand.setAttribute('style', 'border:5px; border-style:solid; border-color: yellow; border-radius: 8px') 
 
         //waiting 0.5 sec to turn back border to invisible
         setTimeout(function() {
-            hand.firstChild.setAttribute('style', 'border:3px; border-style:solid; border-color: rgba(255, 255, 255, 0); border-radius: 8px;')
-        }, 500); // 500 milliseconds = .5 second
+            hand.setAttribute('style', 'border:5px; border-style:solid; border-color: rgba(255, 255, 255, 0); border-radius: 8px;')
+        }, 700);
 
         //displaying score
         scoreDisplay.textContent = `${humanScore}:${computerScore}`;

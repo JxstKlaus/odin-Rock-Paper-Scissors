@@ -113,10 +113,63 @@ ul{
     display: none;
     margin-top: 8rem;
     justify-content: center;
-    gap: 7rem;
+    gap: 3rem;
     width: 100%;
 
+    .player, .machine{
+        width: 30%;
+        height: 23rem;
+        background-color: rgba(22, 22, 22, .9);
+        border-radius: 16px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    
+        p{
+            font-size: 2.3rem;
+            padding: 16px;
+        }
+    
+        .hands{
+            display: flex;
+            justify-content: space-around;
+            
+            .hand{
+                width: 20%;
+                padding: 10px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                border: 5px solid rgba(255, 255, 255, 0);
+        
+                img{
+                    width: 100% ;
+                }
+            }
+            .hand .player_:hover{
+                border: 5px solid rgba(255, 255, 255, 1);
+                border-radius: 8px;
+            }
+            .player_{
+                cursor: pointer;
+            }
+        }
+    
+        .dialoge{
+            height: 25%;
+            h3{
+                display: none;
+            }
+            p{
+                font-size: .8rem;
+                display: none;
+            }
+        }
+    }
+
     .center{
+        width: 20%;
         align-self: center;
         display: flex;
         align-items: center;
@@ -134,52 +187,11 @@ ul{
         }
     }
 }
-.player, .machine{
-    width: 30%;
-    height: 23rem;
-    background-color: rgba(22, 22, 22, .9);
-    border-radius: 16px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 
-    p{
-        font-size: 2.3rem;
-        padding: 8px;
-    }
-
-    .hands{
-        display: flex;
-        justify-content: space-around;
-        
-        .hand{
-            padding: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-    
-            img{
-                width: 80% ;
-                border: 3px solid rgba(255, 255, 255, 0);
-                cursor: pointer;
-            }
-
-            img:hover {
-                border-radius: 8px;
-                border: 3px solid rgba(255, 255, 255, 1);
-            }
-        }
-    }
-
-    .dialoge{
-        height: 25%;
-        h3{
-            display: none;
-        }
-        p{
-            font-size: .8rem;
-            display: none;
-        }
-    }
+.blur   {
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
 }
