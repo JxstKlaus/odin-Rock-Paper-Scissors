@@ -148,7 +148,6 @@ ul{
                 border: 5px solid rgba(255, 255, 255, 0);
                 border-radius: 8px;
                 background: linear-gradient(45deg, rgba(255,255,255,.6) 0%, rgba(235,219,123,.6) 41%, rgba(250,207,133,.6) 100%);
-                
         
                 img{
                     width: 100% ;
@@ -212,12 +211,14 @@ ul{
     }
     p{
         padding-bottom: 2rem;
+
     }
     .navigation{
         width: 65%;
         display: flex;
         justify-content: space-around;
         div{
+            width: 50%;
             cursor: pointer;
             position: relative;
         }

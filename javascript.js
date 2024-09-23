@@ -40,7 +40,7 @@ playButton.addEventListener('click', ()=>{
 })
 
 //selecting computer weapon
-getComputerChoice = () => ["sword", "bow", "shield"][Math.floor(Math.random()*3)];
+getComputerChoice = (enemyHands) => enemyHands[Math.floor(Math.random()*3)];
 
 
 //simulating round logic
@@ -52,51 +52,49 @@ playRound = (h,c) => {
 
 
 //game variables 
-const hands = document.querySelectorAll('.player_');
+const playerHands = document.querySelectorAll('.player_');
+const enemyHands = document.querySelectorAll('.enemy_');
 const scoreDisplay = document.querySelector('.score-display');
 const lastOutcome = document.querySelector('.last-outcome');
 const endOfGame = document.querySelector('.end-of-game')
-
-//border on hover
-hands.forEach((hand) => {
-    hand.addEventListener('mouseenter', () => {
-        hand.setAttribute('style', 'border:5px; border-style:solid; rgba(255, 255, 255, 1); border-radius: 8px')
-    })
-})
-
-hands.forEach((hand) => {
-    hand.addEventListener('mouseleave', () => {
-        hand.setAttribute('style', 'border: trasparent')
-    })
-})
 
 //game 
 let isEnded = false;
 let humanScore = 0;
 let computerScore = 0;
 
-hands.forEach((hand)=>{
-    hand.addEventListener('click', function eventHandler(){
+playerHands.forEach((playerHand)=>{
+    playerHand.addEventListener('click', function eventHandler(){
         if (isEnded==false){
             //getting the round output 
-            playerChoice = hand.firstChild.alt
-            let outcome = playRound(playerChoice, getComputerChoice());
-            console.log(outcome)
+            let playerChoice = playerHand.firstChild.alt;
+            let enemyHand = getComputerChoice(enemyHands);
+            let machineChoice = enemyHand.firstChild.alt;
+            let outcome = playRound(playerChoice, machineChoice);
+
+            enemyHand.style.background = 'linear-gradient(45deg, rgba(255,255,255,1) 0%, rgba(235,219,123,1) 41%, rgba(250,207,133,1) 100%)';
 
             if (outcome === 'win'){
                 humanScore++
-                hand.setAttribute('style', 'border:5px; border-style:solid; border-color: green; border-radius: 8px')
+                playerHand.setAttribute('style', 'border:5px; border-style:solid; border-color: green; border-radius: 8px')
+                enemyHand.style.border = '5px solid red';
+                
             }
             else if (outcome === 'loss'){
                 computerScore++
-                hand.setAttribute('style', 'border:5px; border-style:solid; border-color: red; border-radius: 8px')
+                playerHand.setAttribute('style', 'border:5px; border-style:solid; border-color: red; border-radius: 8px')
+                enemyHand.style.border = '5px solid green';
             }
-            else hand.setAttribute('style', 'border:5px; border-style:solid; border-color: yellow; border-radius: 8px') 
+            else{
+                playerHand.setAttribute('style', 'border:5px; border-style:solid; border-color: yellow; border-radius: 8px');
+                enemyHand.style.border = '5px solid yellow';
+            }
 
-            //waiting 0.5 sec to turn back border to invisible
+            //waiting 2 sec to turn back border to invisible
             setTimeout(function() {
-                hand.setAttribute('style', 'border:5px; border-style:solid; border-color: rgba(255, 255, 255, 0); border-radius: 8px;')
-            }, 700);
+                playerHand.setAttribute('style', 'border: trasparent')
+                enemyHand.setAttribute('style', 'border: trasparent')
+            }, 2000);
 
             //displaying score
             scoreDisplay.textContent = `${humanScore}:${computerScore}`;
