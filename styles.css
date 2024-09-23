@@ -41,6 +41,10 @@ h1{
     text-align: center;
 }
 
+header p{
+    text-align: center;
+}
+
 .info{
     font-size: 0.8rem;
     display: flex;
@@ -122,33 +126,52 @@ ul{
 
     .player, .machine{
         width: 30%;
-        height: 23rem;
+        height: 20rem;
         background-color: rgba(22, 22, 22, .9);
         border-radius: 16px;
         overflow: hidden;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-    
+        justify-content: space-around;
+        @media(max-width: 1024px){
+            height: 30rem;
+            justify-content: flex-start;
+        }
         p{
             font-size: 2.3rem;
             padding: 16px;
+            @media(max-width: 1024px){
+                font-size: 1.8rem;
+                text-align: center;
+            }
+            @media(max-width: 768px){
+                font-size: 1.5rem;
+            }
         }
     
         .hands{
             display: flex;
             justify-content: space-around;
+            @media(max-width: 1024px){
+                flex-direction: column;
+                align-items: center;
+                height: 25rem;
+            }
             
             .hand{
                 width: 20%;
+                height: auto;
                 padding: 10px;
-                display: flex;
-                flex-direction: column;
                 align-items: center;
                 border: 5px solid rgba(255, 255, 255, 0);
                 border-radius: 8px;
                 background: linear-gradient(45deg, rgba(255,255,255,.6) 0%, rgba(235,219,123,.6) 41%, rgba(250,207,133,.6) 100%);
-        
+                @media(max-width: 1024px){
+                    width: 30%;
+                }
+                @media(max-width: 768px){
+                    width: 40%;
+                }
                 img{
                     width: 100% ;
                 } 
@@ -171,6 +194,9 @@ ul{
                 font-size: .8rem;
                 display: none;
             }
+            @media(max-width: 1024px){
+                display: none;
+            }
         }
     }
 
@@ -181,15 +207,28 @@ ul{
         align-items: center;
         flex-direction: column;
         margin-top: 70px;
-        
+        @media(max-width: 700px){
+            .center *{
+                font-size: 80%;
+            }
+        }
         .vs{
             font-size: 5.5rem;
+            @media(max-width: 1024px){
+                font-size: 3.5rem;
+            }
         }
         .score-display{
             font-size: 2.5rem;
+            @media(max-width: 1024px){
+                font-size: 1.6rem;
+            }
         }
         .last-outcome{
-            font-size: 3rem
+            font-size: 3rem;
+            @media(max-width: 1024px){
+                font-size: 1.9rem;
+            }
         }
     }
 }
@@ -199,7 +238,7 @@ ul{
     margin-bottom: 4rem;
     background-color: rgba(22, 22, 22, .9);
     border-radius: 16px;
-    height: 6.5rem;
+    height: auto;
     width: 50%;
     display: none;
     flex-direction: column;
@@ -208,17 +247,20 @@ ul{
     align-self: center;
     h2{
         padding-bottom: 1.5rem;
+        text-align: center;
     }
     p{
         padding-bottom: 2rem;
+        flex-shrink: 1;
 
     }
     .navigation{
-        width: 65%;
+        width: 100%;
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
+        gap: 5rem;
+        
         div{
-            width: 50%;
             cursor: pointer;
             position: relative;
         }

@@ -32,8 +32,10 @@ const menuContainer = document.querySelector('.menu-container')
 const gameContainer = document.querySelector('.game-container')
 const body = document.querySelector('body')
 
-const rounds = parseInt(mode.textContent.at(-1))
+let rounds;
+    console.log(rounds)
 playButton.addEventListener('click', ()=>{
+    rounds = parseInt(mode.textContent.at(-1))
     menuContainer.setAttribute('style', 'display:none;');
     gameContainer.setAttribute('style', 'display:flex;');
     body.setAttribute('style','backdrop-filter: blur(4px)');
@@ -111,8 +113,8 @@ playerHands.forEach((playerHand)=>{
                 p.textContent = "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Suscipit reprehenderit error eos!"
             }
             else{
-                h2.textContent = "The machine has overcome you..."
-                p.textContent = "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Suscipit reprehenderit error eos!"
+                h2.textContent = "Machines are powerful nowadays..."
+                p.textContent = "Lorem ipsum dolor sit, amet consectetur adipisicing elit."
             }
             endOfGame.setAttribute('style', 'display:flex;');
             lastOutcome.textContent = '';
