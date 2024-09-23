@@ -123,6 +123,12 @@ ul{
     justify-content: center;
     gap: 3rem;
     width: 100%;
+    @media (max-width: 1024px) {
+        margin-top: 4rem;
+    }
+    @media (max-width: 768px) {
+        margin-top: 2rem;
+    }
 
     .player, .machine{
         width: 30%;
@@ -245,13 +251,27 @@ ul{
     justify-content: center;
     align-items: center;
     align-self: center;
+    @media(max-width: 1024px){
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        width: 65%;
+    }
+
     h2{
-        padding-bottom: 1.5rem;
+        padding-bottom: 1.4rem;
         text-align: center;
+        @media(max-width: 1024px){
+            font-size: 1.2rem;
+            margin-bottom: 0;
+            padding-bottom: .8rem;
+        }
     }
     p{
         padding-bottom: 2rem;
-        flex-shrink: 1;
+        text-align: center;
+        @media(max-width: 1024px){
+            font-size: .8rem;
+        }
 
     }
     .navigation{
@@ -259,6 +279,7 @@ ul{
         display: flex;
         justify-content: center;
         gap: 5rem;
+        text-align: center;
         
         div{
             cursor: pointer;
